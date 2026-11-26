@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Lobby | STP — Student Development Tracking Platform</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- TOP HUD BAR -->
+  <header class="lobby-hud-top">
+    <div class="hud-identity">
+      <div class="hud-mini-avatar">STP</div>
+      <div class="hud-id-tag">
+        STP Student ID • <span id="hudEmailTag" style="color:#38bdf8; text-transform:lowercase;">bttc2601121@mitsgwl.ac.in</span>
+        <strong id="hudStudentId">BTTC2601121</strong>
+      </div>
+    </div>
+
+    <div class="hud-currencies">
+      <div class="currency-chip">
+        <div class="coin-icon coin-credits">C</div>
+        <div>
+          <small>CURRICULUM CREDITS</small>
+          <span id="hudCredits">22</span>
+        </div>
+      </div>
+
+      <div class="currency-chip">
+        <div class="coin-icon coin-skill">S</div>
+        <div>
+          <small>SKILL POINTS</small>
+          <span id="hudSkillPoints">1480</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-actions">
+      <a href="xml_blueprint.html" class="btn-hud">XML Schema</a>
+      <a href="teacher.html" class="btn-hud">Teacher View</a>
+      <a href="index.html" class="btn-hud btn-hud-exit">Switch Account ✕</a>
+    </div>
+  </header>
+
+  <!-- 3-COLUMN GAMIFIED WORKSPACE -->
+  <main class="lobby-arena">
+    <!-- LEFT SIDE: Navigation Tabs + Blue Mastery Badges + Yellow Attendance Badge -->
+    <aside class="left-rail">
+      <nav class="game-menu-list" aria-label="Student Profile Modules">
+        <button type="button" class="game-tab-btn active" data-panel="overview">
+          <span>Profile Overview</span> <span>▶</span>
+        </button>
+        <button type="button" class="game-tab-btn" data-panel="academicPath">
+          <span>Academic Path</span> <span>🎓</span>
+        </button>
+        <button type="button" class="game-tab-btn" data-panel="certVault">
+          <span>E-Certificate Vault</span> <span>🛡️</span>
+        </button>
+        <button type="button" class="game-tab-btn" data-panel="projectLogs">
+          <span>Project Logs</span> <span>💻</span>
+        </button>
+        <button type="button" class="game-tab-btn" data-panel="honorScore">
+          <span>Honor Score (AMS)</span> <span>📊</span>
+        </button>
+        <button type="button" class="game-tab-btn" data-panel="wishlist">
+          <span>Learning Wishlist</span> <span>⭐</span>
+        </button>
+      </nav>
+
+      <!-- Blue Mastery Badges -->
+      <section class="badges-showcase-card">
+        <h3>🔵 Mastery Badges</h3>
+        <div id="blueBadgeRack" class="badge-rack"></div>
+
+        <!-- Yellow Attendance Badge (Unlocks only when attendance >= 90%) -->
+        <div id="yellowAttendanceBadge" class="yellow-attendance-badge unlocked">
+          <span style="font-size:1.3rem;">🏅</span>
+          <div>
+            <div id="yellowBadgeTitle">GOLD HONOR BADGE (90%+)</div>
+            <small id="yellowBadgeSub">Attendance: 92.1% • Active</small>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- CENTER STAGE: Interactive Avatar + Electric Owl + Tab Content -->
+    <section class="center-stage">
+      <!-- Top Row: 3D-Style Student Avatar & Electric Owl Companion -->
+      <div class="avatar-holo-stage">
+        <div class="student-character-pod">
+          <svg width="175" height="215" viewBox="0 0 200 240" aria-label="Student Avatar">
+            <defs>
+              <linearGradient id="hoodieGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1e3a8a" />
+                <stop offset="100%" stop-color="#0f172a" />
+              </linearGradient>
+              <linearGradient id="holoPad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.85" />
+                <stop offset="100%" stop-color="#34d399" stop-opacity="0.4" />
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="115" r="82" fill="none" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="2" stroke-dasharray="6 4" />
+            <circle cx="100" cy="54" r="24" fill="#f1c27d" />
+            <path d="M76 50 Q80 24 102 25 Q124 26 124 50 Q114 36 100 38 Q86 36 76 50 Z" fill="#0f172a" />
+            <rect x="85" y="49" width="12" height="7" rx="2" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+            <rect x="103" y="49" width="12" height="7" rx="2" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+            <line x1="97" y1="52" x2="103" y2="52" stroke="#38bdf8" stroke-width="1.8" />
+            <path d="M64 86 Q100 76 136 86 L144 155 L56 155 Z" fill="url(#hoodieGrad)" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="100" y="118" text-anchor="middle" fill="#facc15" font-size="11" font-weight="bold">STP MITS</text>
+            <polygon points="122,102 168,90 174,124 128,136" fill="url(#holoPad)" stroke="#e0f2fe" stroke-width="1.5" />
+            <line x1="132" y1="108" x2="160" y2="101" stroke="#ffffff" stroke-width="2" />
+            <line x1="134" y1="117" x2="156" y2="112" stroke="#ffffff" stroke-width="2" />
+            <rect x="74" y="155" width="20" height="58" rx="6" fill="#1e293b" />
+            <rect x="106" y="155" width="20" height="58" rx="6" fill="#1e293b" />
+            <rect x="68" y="208" width="28" height="12" rx="5" fill="#38bdf8" />
+            <rect x="104" y="208" width="28" height="12" rx="5" fill="#38bdf8" />
+          </svg>
+          <div class="holo-pedestal"></div>
+        </div>
+
+        <!-- ELECTRIC OWL STUDY BUDDY -->
+        <div class="electric-owl-box" aria-live="polite">
+          <div class="owl-header">
+            <svg width="46" height="46" viewBox="0 0 80 80" aria-hidden="true">
+              <circle cx="40" cy="42" r="28" fill="#0ea5e9" stroke="#fde047" stroke-width="2.5" />
+              <polygon points="18,22 28,10 34,24" fill="#38bdf8" />
+              <polygon points="62,22 52,10 46,24" fill="#38bdf8" />
+              <circle cx="30" cy="38" r="9" fill="#0f172a" stroke="#facc15" stroke-width="2" />
+              <circle cx="50" cy="38" r="9" fill="#0f172a" stroke="#facc15" stroke-width="2" />
+              <circle cx="30" cy="38" r="3.5" fill="#38bdf8" />
+              <circle cx="50" cy="38" r="3.5" fill="#38bdf8" />
+              <polygon points="36,46 44,46 40,54" fill="#facc15" />
+            </svg>
+            <div>
+              <strong style="color:#facc15; font-size:0.88rem;">⚡ ELECTRIC OWL BUDDY</strong>
+              <div style="font-size:0.72rem; color:#94a3b8;">STP Live Campus Notifier</div>
+            </div>
+          </div>
+          <div id="owlMessageBox" class="owl-speech">
+            🦉 Hoot! Welcome to STP!
+          </div>
+          <div class="owl-controls">
+            <span id="owlCounter" style="font-size:0.72rem; color:#94a3b8;">Alert 1 of 2</span>
+            <button type="button" id="nextOwlTipBtn" class="owl-btn">Next Update ⚡</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DYNAMIC MODULE PANELS -->
+      <div id="panel-overview" class="module-panel active">
+        <div class="panel-card">
+          <h3>⚡ STP Active Profile Overview &amp; Quick Actions</h3>
+          <p style="font-size:0.88rem; color:#cbd5e1; margin-bottom:0.8rem;">
+            Logged in via official MITS college email. Earn higher Skill Levels (L1–L7) from
+            faculty, collect verified e-certificates, and keep attendance ≥ 90% to unlock your
+            Golden Honor Badge.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.6rem;">
+            <button type="button" class="btn-primary-glow" onclick="switchTab('certVault')">+ Upload E-Certificate</button>
+            <button type="button" class="btn-hud" onclick="switchTab('projectLogs')">+ Add Project Log</button>
+            <button type="button" class="btn-hud" onclick="switchTab('honorScore')">View AMS Marks &amp; Attendance</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-academicPath" class="module-panel">
+        <div class="panel-card">
+          <h3>🎓 Semester-by-Semester Academic Path</h3>
+          <div id="academicPathGrid" class="semester-timeline"></div>
+        </div>
+      </div>
+
+      <div id="panel-certVault" class="module-panel">
+        <div class="panel-card">
+          <h3>🛡️ E-Certificate Vault (Teacher Verification Required)</h3>
+          <p style="font-size:0.82rem; color:#94a3b8; margin-bottom:0.75rem;">
+            Upload new certificates below. Status starts as <strong>Pending</strong> and only
+            appears on your public Right Summary showcase once <strong>Approved</strong> by a Teacher.
+          </p>
+          <form id="certUploadForm" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:0.9rem;">
+            <input type="text" id="certTitleInput" placeholder="Certificate Title (e.g., Java DSA)" required style="flex:1 1 200px; background:#070b17; border:1px solid #334155; color:#fff; padding:0.5rem; border-radius:7px;" />
+            <input type="text" id="certIssuerInput" placeholder="Issuer (e.g., NPTEL / MITS)" required style="flex:1 1 160px; background:#070b17; border:1px solid #334155; color:#fff; padding:0.5rem; border-radius:7px;" />
+            <button type="submit" class="btn-primary-glow">Submit for Approval</button>
+          </form>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Certificate</th>
+                <th>Issuer</th>
+                <th>Verified By</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="vaultTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="panel-projectLogs" class="module-panel">
+        <div class="panel-card">
+          <h3>💻 Ongoing &amp; Completed Project Logs</h3>
+          <form id="projectAddForm" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:0.9rem;">
+            <input type="text" id="projTitleInput" placeholder="Project Name" required style="flex:1 1 190px; background:#070b17; border:1px solid #334155; color:#fff; padding:0.5rem; border-radius:7px;" />
+            <input type="text" id="projStackInput" placeholder="Tech Stack (e.g., C++, JS)" required style="flex:1 1 160px; background:#070b17; border:1px solid #334155; color:#fff; padding:0.5rem; border-radius:7px;" />
+            <button type="submit" class="btn-primary-glow">Log Project</button>
+          </form>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Project Title</th>
+                <th>Tech Stack</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="projectsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="panel-honorScore" class="module-panel">
+        <div class="panel-card">
+          <h3>📊 Honor Score — AMS Attendance &amp; Exam Marks</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Attended / Total</th>
+                <th>Percentage</th>
+              </tr>
+            </thead>
+            <tbody id="attendanceTableBody"></tbody>
+          </table>
+
+          <h3 style="margin-top:1rem;">📝 Quiz &amp; Mid-Sem Marks</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Quiz Score</th>
+                <th>Mid-Sem Marks</th>
+              </tr>
+            </thead>
+            <tbody id="marksTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="panel-wishlist" class="module-panel">
+        <div class="panel-card">
+          <h3>⭐ Skill &amp; Learning Wishlist</h3>
+          <form id="wishlistForm" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:0.9rem;">
+            <input type="text" id="wishSkillInput" placeholder="Skill to learn (e.g., Java, C++, Docker)" required style="flex:1 1 220px; background:#070b17; border:1px solid #334155; color:#fff; padding:0.5rem; border-radius:7px;" />
+            <select id="wishPriorityInput" style="background:#070b17; border:1px solid #334155; color:#fff; padding:0.5rem; border-radius:7px;">
+              <option value="High">High Priority</option>
+              <option value="Medium">Medium Priority</option>
+            </select>
+            <button type="submit" class="btn-primary-glow">Add to Wishlist</button>
+          </form>
+          <ul id="wishlistItems" class="mini-pill-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT SIDE: Academic Summary Table & Verified Showcase -->
+    <aside class="right-summary-card" aria-label="Academic Summary">
+      <div class="summary-top-banner">
+        <h2>STP Academic Summary</h2>
+        <span style="font-size:0.75rem; color:#38bdf8; font-weight:700;">LIVE SYNC</span>
+      </div>
+
+      <div class="gamer-tag-box">
+        <div class="gamer-emblem">⚡</div>
+        <div class="gamer-details">
+          <h3 id="sumHandle">CODE_SAURAV_121</h3>
+          <p id="sumName">Saurav Kumar</p>
+          <small id="sumUid">UID: BTTC2601121 • MITS Gwalior</small>
+        </div>
+      </div>
+
+      <!-- Teacher-Assigned Skill Level (1-7) -->
+      <div class="level-rank-strip">
+        <div>
+          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700;">FACULTY SKILL LEVEL</div>
+          <div class="level-number">LEVEL <span id="sumSkillLevel">4</span> <span style="font-size:0.85rem; color:#94a3b8;">/ 7</span></div>
+        </div>
+        <div style="text-align:right;">
+          <div id="sumTierTitle" style="font-size:0.76rem; font-weight:800; color:#facc15;">L4 — INTERMEDIATE DEVELOPER</div>
+          <small id="sumStack" style="font-size:0.72rem; color:#cbd5e1;">Python &amp; JavaScript</small>
+        </div>
+      </div>
+
+      <!-- Structured Profile Table -->
+      <table class="summary-table">
+        <tbody>
+          <tr>
+            <td>Student Name</td>
+            <td id="tblName">Saurav Kumar</td>
+          </tr>
+          <tr>
+            <td>Branch</td>
+            <td id="tblBranch">CST</td>
+          </tr>
+          <tr>
+            <td>Year &amp; Semester</td>
+            <td id="tblYearSem">1st Year • 1st Sem (Sec B)</td>
+          </tr>
+          <tr>
+            <td>Honor Attendance</td>
+            <td id="tblAttendance" style="color:#facc15;">92.1%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Verified E-Certificates Only -->
+      <div class="summary-section-block">
+        <h4>🛡️ Verified E-Certificates</h4>
+        <ul id="sumCertList" class="mini-pill-list"></ul>
+      </div>
+
+      <!-- Achievements -->
+      <div class="summary-section-block">
+        <h4>🏆 Achievements</h4>
+        <ul id="sumAchievementList" class="mini-pill-list"></ul>
+      </div>
+
+      <!-- Current Projects -->
+      <div class="summary-section-block">
+        <h4>🚀 Current Projects</h4>
+        <ul id="sumProjectList" class="mini-pill-list"></ul>
+      </div>
+    </aside>
+  </main>
+
+  <script src="js/sdms_store.js"></script>
+  <script src="js/student.js"></script>
+</body>
+</html>

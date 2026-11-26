@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stpPlatform name="STP — Student Development Tracking Platform" institution="Madhav Institute of Technology &amp; Science, Gwalior" domain="@mitsgwl.ac.in" code="34261107">
+  <authenticationPolicy>
+    <institutionalEmailDomain>@mitsgwl.ac.in</institutionalEmailDomain>
+    <studentAutoProvisioning enabled="true" capacity="unlimited_college_students" />
+    <teacherAccess mode="institutional_email_or_faculty_id" />
+    <technicianAccess mode="strict_whitelist_only" allowedIds="TECH-MITS-01,TECH-MITS-02" />
+  </authenticationPolicy>
+  <studentProfile enrolment="BTTC2601121" email="bttc2601121@mitsgwl.ac.in">
+    <name>Saurav Kumar</name>
+    <branch>Computer Science &amp; Technology</branch>
+    <year>1st Year</year>
+    <semester>1st Sem (Section B)</semester>
+    <facultySkillLevel min="1" max="7">4</facultySkillLevel>
+    <attendanceThresholdForYellowBadge>90</attendanceThresholdForYellowBadge>
+  </studentProfile>
+</stpPlatform>

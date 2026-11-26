@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Console | STP — Student Development Tracking Platform</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="lobby-hud-top">
+    <div class="hud-identity">
+      <div class="hud-mini-avatar" style="background:#0284c7;">FAC</div>
+      <div class="hud-id-tag">
+        STP Faculty Mentor Console
+        <strong id="facultyHeaderName">Prof. N. Kulkarni (CST Dept.)</strong>
+      </div>
+    </div>
+    <div class="hud-actions">
+      <a href="student.html" class="btn-hud">Preview Selected Student</a>
+      <a href="technician.html" class="btn-hud">Technician Gate</a>
+      <a href="index.html" class="btn-hud btn-hud-exit">Sign Out ✕</a>
+    </div>
+  </header>
+
+  <main class="portal-container">
+    <div class="panel-card" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem;">
+      <div>
+        <h3>👨‍🏫 STP Multi-Student Faculty Control Panel</h3>
+        <p style="font-size:0.86rem; color:#94a3b8;">
+          Select any registered MITS student below to update their Skill Level (1–7), AMS
+          attendance, quiz marks, or verify uploaded e-certificates.
+        </p>
+      </div>
+      <div class="form-field" style="min-width:290px;">
+        <label for="teacherStudentSelector">Active Student Profile</label>
+        <select id="teacherStudentSelector"></select>
+      </div>
+    </div>
+
+    <div class="portal-grid">
+      <!-- 1. Assign Skill Level (1-7) & Achievement -->
+      <section class="panel-card">
+        <h3>1. Assign Skill Level (1–7) &amp; Achievement</h3>
+        <form id="skillAssignForm" style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div class="form-field">
+            <label for="facultySkillSelect">Select Skill Level (L1 Basics → L7 Top Tier)</label>
+            <select id="facultySkillSelect">
+              <option value="1">Level 1 — Basics Explorer</option>
+              <option value="2">Level 2 — Developed Coder</option>
+              <option value="3">Level 3 — Good Practitioner</option>
+              <option value="4">Level 4 — Intermediate Developer</option>
+              <option value="5">Level 5 — Proficient Builder</option>
+              <option value="6">Level 6 — Advanced Architect</option>
+              <option value="7">Level 7 — Top Tier Grandmaster</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="newAchievementInput">Award New Achievement Badge (Optional)</label>
+            <input type="text" id="newAchievementInput" placeholder="e.g., Codeathon Rank 1" />
+          </div>
+
+          <button type="submit" class="btn-primary-glow">Update Student Rank &amp; Notify Owl</button>
+        </form>
+        <p id="facultySkillMsg" style="color:#6ee7b7; font-size:0.84rem; margin-top:0.6rem;"></p>
+      </section>
+
+      <!-- 2. Upload AMS Attendance & Quiz Marks -->
+      <section class="panel-card">
+        <h3>2. Upload AMS Attendance &amp; Quiz Marks</h3>
+        <form id="amsUpdateForm" style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div class="form-field">
+            <label for="subjectSelect">Select Subject</label>
+            <select id="subjectSelect"></select>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
+            <div class="form-field">
+              <label for="attAttended">Classes Attended</label>
+              <input type="number" id="attAttended" min="0" max="100" required />
+            </div>
+            <div class="form-field">
+              <label for="attTotal">Total Classes</label>
+              <input type="number" id="attTotal" min="1" max="100" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="quizScoreInput">Update Quiz Score (out of 20)</label>
+            <input type="number" id="quizScoreInput" min="0" max="20" required />
+          </div>
+
+          <button type="submit" class="btn-primary-glow">Save AMS Attendance &amp; Marks</button>
+        </form>
+        <p id="amsSaveMsg" style="color:#6ee7b7; font-size:0.84rem; margin-top:0.6rem;"></p>
+      </section>
+    </div>
+
+    <!-- 3. E-Certificate Verification Queue -->
+    <section class="panel-card">
+      <h3>3. E-Certificate Verification Queue (Only Approved Certificates Show in Student Profile)</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Cert ID</th>
+            <th>Certificate Title</th>
+            <th>Issuer</th>
+            <th>Current Status</th>
+            <th>Faculty Action</th>
+          </tr>
+        </thead>
+        <tbody id="facultyCertTableBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/sdms_store.js"></script>
+  <script src="js/teacher.js"></script>
+</body>
+</html>

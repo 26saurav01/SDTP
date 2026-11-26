@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restricted Technician Console | STP — MITS Gwalior</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="lobby-hud-top">
+    <div class="hud-identity">
+      <div class="hud-mini-avatar" style="background:#a855f7;">TECH</div>
+      <div class="hud-id-tag">
+        STP Restricted Technician Access
+        <strong id="techActiveUser">Verifying Whitelist...</strong>
+      </div>
+    </div>
+    <div class="hud-actions">
+      <a href="student.html" class="btn-hud">Student Lobby</a>
+      <a href="teacher.html" class="btn-hud">Teacher View</a>
+      <a href="index.html" class="btn-hud btn-hud-exit">Sign Out ✕</a>
+    </div>
+  </header>
+
+  <main class="portal-container">
+    <section id="techAccessDenied" class="panel-card" style="display:none; border-color:#ef4444;">
+      <h3 style="color:#fca5a5;">⛔ Restricted Access — Authorized STP Technician IDs Only</h3>
+      <p style="font-size:0.9rem; color:#cbd5e1; margin:0.6rem 0;">
+        Only whitelisted faculty technicians (<code>TECH-MITS-01</code> / <code>rksharma.tech@mitsgwl.ac.in</code>
+        or <code>TECH-MITS-02</code> / <code>skillcell.tech@mitsgwl.ac.in</code>) can access
+        system-level student controls in STP.
+      </p>
+      <a href="index.html" class="btn-primary-glow" style="display:inline-block; text-decoration:none;">Return to Sign In</a>
+    </section>
+
+    <div id="techAuthorizedArea" style="display:none; flex-direction:column; gap:1.25rem;">
+      <section class="panel-card">
+        <h3>🔐 Whitelisted STP Technician &amp; Faculty ID Registry</h3>
+        <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:0.75rem;">
+          Only these verified institutional IDs / emails hold technician-level override permissions:
+        </p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Authorized ID</th>
+              <th>Institutional Email</th>
+              <th>Faculty / Technician Name</th>
+              <th>Department</th>
+            </tr>
+          </thead>
+          <tbody id="whitelistTableBody"></tbody>
+        </table>
+      </section>
+
+      <section class="panel-card">
+        <h3>⚙️ Student Account &amp; Semester Path Administration</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:0.8rem; align-items:end;">
+          <div class="form-field" style="flex:1 1 220px;">
+            <label for="techStudentSelect">Select Student</label>
+            <select id="techStudentSelect"></select>
+          </div>
+          <div class="form-field" style="flex:1 1 220px;">
+            <label for="techSemUpdate">Promote / Update Student Semester &amp; Section</label>
+            <select id="techSemUpdate">
+              <option value="1st Sem (Sec B)">1st Year • 1st Sem (Sec B)</option>
+              <option value="2nd Sem (Sec A)">1st Year • 2nd Sem (Sec A)</option>
+              <option value="3rd Sem (Sec B)">2nd Year • 3rd Sem (Sec B)</option>
+            </select>
+          </div>
+          <button type="button" id="applySemBtn" class="btn-primary-glow">Update Semester Path</button>
+          <button type="button" id="resetAllDemoBtn" class="btn-hud btn-hud-exit">Reset All Demo Data</button>
+        </div>
+        <p id="techActionMsg" style="color:#6ee7b7; font-size:0.85rem; margin-top:0.65rem;"></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/sdms_store.js"></script>
+  <script src="js/technician.js"></script>
+</body>
+</html>

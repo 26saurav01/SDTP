@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System XML &amp; Architecture | STP — MITS Gwalior</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="lobby-hud-top">
+    <div class="hud-identity">
+      <div class="hud-mini-avatar">XML</div>
+      <div class="hud-id-tag">
+        STP Specification
+        <strong>Well-Formed XML &amp; College Email SSO Schema</strong>
+      </div>
+    </div>
+    <div class="hud-actions">
+      <a href="index.html" class="btn-hud">Sign In</a>
+      <a href="student.html" class="btn-hud">Student Lobby</a>
+    </div>
+  </header>
+
+  <main class="portal-container">
+    <section class="panel-card">
+      <h3>📄 Well-Formed XML Configuration (<code>data/stp_profile.xml</code>)</h3>
+      <p id="xmlVerifyBanner" style="color:#6ee7b7; font-size:0.86rem; margin-bottom:0.75rem;"></p>
+      <pre id="xmlCodePreview" style="background:#070b17; border:1px solid #334155; padding:1rem; border-radius:10px; overflow-x:auto; color:#e2e8f0; font-size:0.86rem;"></pre>
+    </section>
+  </main>
+
+  <script>
+    const RAW_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<stpPlatform name="STP — Student Development Tracking Platform" institution="Madhav Institute of Technology &amp; Science, Gwalior" domain="@mitsgwl.ac.in" code="34261107">
+  <authenticationPolicy>
+    <institutionalEmailDomain>@mitsgwl.ac.in</institutionalEmailDomain>
+    <studentAutoProvisioning enabled="true" capacity="unlimited_college_students" />
+    <teacherAccess mode="institutional_email_or_faculty_id" />
+    <technicianAccess mode="strict_whitelist_only" allowedIds="TECH-MITS-01,TECH-MITS-02" />
+  </authenticationPolicy>
+  <studentProfile enrolment="BTTC2601121" email="bttc2601121@mitsgwl.ac.in">
+    <name>Saurav Kumar</name>
+    <branch>Computer Science &amp; Technology</branch>
+    <year>1st Year</year>
+    <semester>1st Sem (Section B)</semester>
+    <facultySkillLevel min="1" max="7">4</facultySkillLevel>
+    <attendanceThresholdForYellowBadge>90</attendanceThresholdForYellowBadge>
+  </studentProfile>
+</stpPlatform>`;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(RAW_XML, "application/xml");
+    const err = doc.querySelector("parsererror");
+    document.getElementById("xmlVerifyBanner").textContent = err
+      ? "Error: Malformed XML detected."
+      : "✅ Verified Well-Formed XML Document (Parsed cleanly with DOMParser).";
+    document.getElementById("xmlCodePreview").textContent = RAW_XML;
+  </script>
+</body>
+</html>

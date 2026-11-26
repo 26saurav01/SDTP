@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STP | Student Development Tracking Platform — MITS Gwalior</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="landing-topbar">
+    <div class="mits-brand">
+      <div class="mits-crest-circle">STP</div>
+      <div class="mits-brand-text">
+        <h2>STP <span style="color:#38bdf8;">MITS GWALIOR</span></h2>
+        <span>Student Development Tracking Platform</span>
+      </div>
+    </div>
+
+    <nav class="landing-nav" aria-label="Landing Navigation">
+      <a href="index.html">Home</a>
+      <a href="#features">Modules</a>
+      <a href="xml_blueprint.html">System XML</a>
+      <button type="button" class="btn-signin-pill" onclick="document.getElementById('loginEmail').focus()">
+        <span>⇥</span> Sign In
+      </button>
+    </nav>
+  </header>
+
+  <main class="landing-hero">
+    <!-- Left Column: Title + 4 Feature Tiles -->
+    <section class="hero-left">
+      <h1>
+        Student Development<br />
+        <span>Tracking Platform (STP)</span>
+      </h1>
+      <p>
+        Sign in directly using your official <strong>@mitsgwl.ac.in</strong> college email ID.
+        Every MITS student automatically gets their own personalized gamified profile, Electric Owl
+        study buddy, and faculty-verified E-Certificate showcase.
+      </p>
+
+      <div id="features" class="feature-cards-grid">
+        <article class="feature-tile">
+          <div class="feature-tile-icon">📧</div>
+          <h3>Direct College Email SSO</h3>
+          <p>Any student with an @mitsgwl.ac.in email logs in instantly—no pre-set PIN needed.</p>
+        </article>
+
+        <article class="feature-tile">
+          <div class="feature-tile-icon">🦉</div>
+          <h3>Electric Owl Buddy</h3>
+          <p>Real-time companion alerting you on attendance thresholds, quiz scores, and approvals.</p>
+        </article>
+
+        <article class="feature-tile">
+          <div class="feature-tile-icon">🛡️</div>
+          <h3>Verified E-Certificate Vault</h3>
+          <p>Certificates appear on your showcase only after verified approval by MITS faculty.</p>
+        </article>
+
+        <article class="feature-tile">
+          <div class="feature-tile-icon">📊</div>
+          <h3>Multi-Student AMS Sync</h3>
+          <p>Teachers manage attendance, marks, and Level 1–7 ranks across all enrolled students.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Right Column: STP Sign-In Box -->
+    <aside class="signin-card" aria-label="Sign in to STP">
+      <div class="signin-badge-icon">🎓</div>
+      <div class="signin-header">
+        <h2>Sign in to STP</h2>
+        <p>Use your official <strong>@mitsgwl.ac.in</strong> email ID</p>
+      </div>
+
+      <!-- 3 Role Switcher -->
+      <div class="role-tabs" role="tablist">
+        <button type="button" class="role-tab active" data-role="student">🎓 Student</button>
+        <button type="button" class="role-tab" data-role="teacher">👨‍🏫 Teacher</button>
+        <button type="button" class="role-tab" data-role="technician">🔐 Technician</button>
+      </div>
+
+      <form id="sdmsLoginForm" novalidate style="display:flex; flex-direction:column; gap:0.8rem;">
+        <div class="form-field">
+          <label id="emailLabel" for="loginEmail">Official MITS College Email ID</label>
+          <input type="email" id="loginEmail" placeholder="e.g., bttc2601121@mitsgwl.ac.in" value="bttc2601121@mitsgwl.ac.in" required />
+        </div>
+
+        <div class="form-field" id="displayNameField">
+          <label for="studentDisplayName">Full Name (Auto-creates profile on 1st login)</label>
+          <input type="text" id="studentDisplayName" placeholder="e.g., Saurav Kumar" value="Saurav Kumar" />
+        </div>
+
+        <div id="loginError" class="error-banner" role="alert"></div>
+
+        <button type="button" id="googleSignInBtn" class="btn-google">
+          <span style="color:#ea4335; font-weight:900;">G</span> Continue with @mitsgwl.ac.in Google SSO
+        </button>
+
+        <button type="submit" class="btn-primary-glow">Sign In with College Email →</button>
+      </form>
+
+      <div id="roleHintBox" class="demo-accounts-box">
+        <strong>Instant Student Access:</strong> Enter <em>any</em> <code>@mitsgwl.ac.in</code> email (e.g., your own enrolment email) or click a sample below:
+        <div class="quick-preset-row">
+          <button type="button" class="preset-pill" onclick="fillPreset('bttc2601121@mitsgwl.ac.in', 'Saurav Kumar')">Saurav (CST)</button>
+          <button type="button" class="preset-pill" onclick="fillPreset('btcs2601045@mitsgwl.ac.in', 'Ananya Sharma')">Ananya (CSE)</button>
+          <button type="button" class="preset-pill" onclick="fillPreset('btai2601088@mitsgwl.ac.in', 'Rohan Verma')">Rohan (AI &amp; DS)</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="js/sdms_store.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
